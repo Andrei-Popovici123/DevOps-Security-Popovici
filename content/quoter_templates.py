@@ -1,7 +1,7 @@
 def quote_fragment(id, text, attribution):
     return f"""
 <a href="/quotes/{id}" class="quote img{id % 13}">
-  <q>{text}=1</q>
+  <q>{text}- nice quote</q>
   <address>{attribution}</address>
 </a>
 """
