@@ -47,8 +47,12 @@ def get_comments_page(quote_id):
 # Post a new quote
 @app.route("/quotes", methods=["POST"])
 def post_quote():
+    cur = db.cursor()
     with db:
-        db.execute(f"""insert into quotes(text,attribution) values("{request.form['text']}","{request.form['attribution']}")""")
+        cur.execute("""
+            INSERT INTO quotes (text, attribution) VALUES (?, ?)
+        """, (request.form['text'], request.form['attribution']))
+    db.commit()
     return redirect("/#bottom")
 
 
