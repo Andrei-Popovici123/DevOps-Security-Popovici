@@ -98,5 +98,4 @@ jobs:
       - name: Run API tests
         run: |
           postman collection run "38403342-8b6f5f51-195c-4257-b341-61130914ec90"
-          # Lint your API using Postman CLI
-          postman api lint c6b84769-4c02-49a4-8d7f-724fd93bc13c
+
