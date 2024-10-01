@@ -84,21 +84,21 @@ jobs:
               sudo kubectl delete deployment --all              
               sudo kubectl apply -f ${{ github.workspace }}/kubernetes/deployment.yaml --force
               sudo kubectl apply -f ${{ github.workspace }}/kubernetes/nginx-service.yaml --force
+api-test:
+name: Automated API tests using Postman CLI
+needs: [ deploy ]
+on: push
 
-  name: Automated API tests using Postman CLI
-  needs: [ deploy ]
-  on: push
-
-  jobs:
-    automated-api-tests:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v4
-        - name: Install Postman CLI
-          run: |
-            curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
-        - name: Login to Postman CLI
-          run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
-        - name: Run API tests
-          run: |
-            postman collection run "38403342-3bb1dcde-8b3b-437e-acec-622f21002029"
+jobs:
+  automated-api-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Postman CLI
+        run: |
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+      - name: Login to Postman CLI
+        run: postman login --with-api-key ${{ secrets.POSTMAN_API_KEY }}
+      - name: Run API tests
+        run: |
+          postman collection run "38403342-94f1c80a-df7b-4585-a500-41efc8771472" -e "38403342-48f57a44-0640-4d90-a00a-f974d0d7989d"
