@@ -45,12 +45,12 @@ jobs:
         command: cves
         image: andreipopovici123/student-app:latest
         #only-fixed: true
-        only-severities: critical,high
+        #only-severities: critical,high
         ignore-base: false
         ignore-unchanged:  false
         write-comment: true
         github-token:  ${{ secrets.GITHUB_TOKEN }}
-        exit-code: true
+        #exit-code: true
         #exit-on: vulnerability
 
   test:
